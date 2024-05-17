@@ -1,3 +1,4 @@
+<!-- Start Badges -->
 <p align="center">
   <a href="#">
     <img src="https://badges.pufler.dev/visits/azaryasph/Improving-Employee-Retention-By-Predicting-Employee-Attrition-Using-Machine-Learning" alt="Visits Badge">
@@ -11,12 +12,18 @@
     <img src="https://www.codefactor.io/repository/github/azaryasph/Improving-Employee-Retention-By-Predicting-Employee-Attrition-Using-Machine-Learning" alt="CodeFactor" />
 </a>
 </p>
+<!-- End Badges -->
 
+<!-- Start Project Title -->
 # <img src="https://yt3.googleusercontent.com/ytc/AIdro_n0EO16H6Cu5os9ZOOP1_BsmeruHYlmlOcToYvI=s900-c-k-c0x00ffffff-no-rj" width="30"> Mini Project 5: Improving Employee Retention By Predicting Employee Attrition Using Machine Learning<img src="https://yt3.googleusercontent.com/ytc/AIdro_n0EO16H6Cu5os9ZOOP1_BsmeruHYlmlOcToYvI=s900-c-k-c0x00ffffff-no-rj" width="30">
+<!-- End Project Title -->
 
+<!-- Start Image Acc -->
 ![Employees](https://images.unsplash.com/photo-1504384308090-c894fdcc538d?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)
 Photo by <a href="https://unsplash.com/@frantic?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Alex Kotliarskyi</a> on <a href="https://unsplash.com/photos/people-doing-office-works-QBpZGqEMsKg?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a>
-  
+<!-- End Image Acc -->
+
+<!-- Start Table of Contents -->
 ## Table of Contents
 1. [📝 Background Project](#background-project)
 2. [🔭 Scope of Work](#scope-of-work)
@@ -27,7 +34,9 @@ Photo by <a href="https://unsplash.com/@frantic?utm_content=creditCopyText&utm_m
 7. [🔚 Conclusion](#conclusion)
 8. [💻 Installation and Usage](#installation-and-usage)
 9. [🙏 Acknowledgements](#acknowledgements)
+<!-- End Table of Contents -->
 
+<!-- Start Background Project -->
 ## Background Project
 ### What is the problem to solve?
 As a member of the Data Scientist team at a technology start-up company. The company is currently experiencing big problems; many of their employees have submitted their resignations, but the company has not yer decided on this matter. I will help the company to explain the current condition of its employees, as well as explore the problems within the company that cause employees to resign, so that the company can make the right decisions to improve employee retention.
@@ -41,27 +50,71 @@ The goal of this project is to predict employee resignations and provide actiona
 
 ### What Will be Changed if There are the Model Results?
 If there's model predction results, the company can make the right decisions to use their resources more effectively and efficiently.
+<!-- End Background Project -->
 
+<!-- Start Scope of Work -->
 ## Scope of Work
 ### What is the scope of this project?
-
-
+The scope of this project is around predicting employee resignations and providing actionable business recomendations from the data analysis and model results.
 
 ### How is the output of the developed model?
+The output of the developed model is a prediction of employee resignations and actionable business recommendations to improve employee retention.
+<!-- End Scope of WOrk -->
 
-
-
+<!-- Start Data and Assumptions -->
 ## Data and Assumptions
 ### Data Size
-
+The dataset contains 287 rows and 25 columns.
 
 ### Features and Description
-
+|Feature|Description|
+|---|---|
+|Username|Employee's username|
+|Enterprise ID|Employee's enterprise ID|
+|StatusPernikahan|Employee's marital status|
+|Jenis Kelamin|Employee's gender|
+|StatusKepegawaian|Employee's employment status|
+|Pekerjaan|Employee's job title|
+|JenjangKarir|Employee's career level|
+|PerformancePegawai|Employee's performance|
+|AsalDaerah|Employee's origin|
+|HiringPlatform|Employee's hiring platform|
+|SkorSurveyEngagement|Employee's engagement survey score|
+|SkorKepuasanPegawai|Employee's satisfaction score|
+|JumlahKeikutsertaanProjek|Employee's number of project participations|
+|JumlahKeterlambatanSebulanTerakhir|Employee's number of late arrivals in the last month|
+|JumlahKetidakhadiran|Employee's number of absences|
+|NomorHP|Employee's phone number|
+|Email|Employee's email|
+|TingkatPendidikan|Employee's education level|
+|PernahBekerja|Employee's previous work experience|
+|IkutProgramLOP|Employee's LOP program participation|
+|AlasanResign|Employee's resignation reason|
+|TanggalLahir|Employee's birth date|
+|TanggalHiring|Employee's hiring date|
+|TanggalPenilaianKaryawan|Employee's evaluation date|
+|TanggalResign|Employee's resignation date|
 
 ### Assumptions
+Based on my domain knowledge from the data analysis, I assume that the following features are important for predicting employee resignations:
+- `PerformancePegawai`
+- `SkorSurveyEngagement`
+- `SkorKepuasanPegawai`
+- `JumlahKeikutsertaanProjek`
+- `JumlahKeterlambatanSebulanTerakhir`
+- `JumlahKetidakhadiran`
+- `TingkatPendidikan`
+- `JenjangKarir`
+- `StatusKepegawaian`
+- `Pekerjaan`
+- `AsalDaerah`
+- `Age` (derived from `TanggalLahir`)
+- `EmploymentDuration` (derived from `TanggalHiring` and `TanggalResign`, for more details please see the notebook)
+- `HiringToEval` (derived from `TanggalHiring` and `TanggalPenilaianKaryawan`)
+The rest of other features are not necessary for predicting employee resignations, because they are Identifiers and some of them are data leakage.
+<!-- End Data and Assumptions -->
 
-
-### Data Analysis
+## Data Analysis
 
 
 ### Data Preprocessing
