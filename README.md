@@ -30,18 +30,17 @@ Photo by <a href="https://unsplash.com/@frantic?utm_content=creditCopyText&utm_m
 
 ## Background Project
 ### What is the problem to solve?
-
+As a member of the Data Scientist team at a technology start-up company. The company is currently experiencing big problems; many of their employees have submitted their resignations, but the company has not yer decided on this matter. I will help the company to explain the current condition of its employees, as well as explore the problems within the company that cause employees to resign, so that the company can make the right decisions to improve employee retention.
 
 
 ### Why is this problem important?
-
+No matter the ecomonic climate, employee retention is critical to the success of any company. It can save the company money, foster a positive work environment, lead to better team member performance, generate more revenue, and create a more stable company culture. Employee retention is a key indicator of company health and success. It is important to understand why employees leave a company and what can be done to retain them.
 
 ### What is the goal of this project?
-
+The goal of this project is to predict employee resignations and provide actionable business recommendations to improve employee retention. The company can use the results of this project to make the right decisions to improve employee retention.
 
 ### What Will be Changed if There are the Model Results?
-
-
+If there's model predction results, the company can make the right decisions to use their resources more effectively and efficiently.
 
 ## Scope of Work
 ### What is the scope of this project?
