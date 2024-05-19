@@ -115,9 +115,114 @@ The rest of other features are not necessary for predicting employee resignation
 <!-- End Data and Assumptions -->
 
 ## Data Analysis
+For data preprocessing, I divide the process into two stages:
+1. Data Analysis Preprocessing.
+2. Machine Learning Preprocessing.
+
+Data Analysis Preprocessing will be explained in this section, while Machine Learning Preprocessing will be explained in the next section.
+
+### Data Analysis Preprocessing
+I first create a copy of the original imported data. This copy is used solely for data analysis purposes. In this stage I did the following:
+1. Check the data types of each feature.
+2. Check for missing values.
+3. Check for duplicate rows.
+4. Check for unique values in each feature.
+5. Define functions to clean the data and create new features to better understand the dataset. The functions will also be used in the Machine Learning Preprocessing stage.
+6. Apply the functions to the data.
+7. Aggregate the data for analysis.
+
+### Annual Report on Employee Number Changes
+#### How many employees remaining over the years?
+The number of employees remaining over the years is shown in the following chart:
+
+![Remaining Emp](./src/images/line_remain_emp.png)
+
+Insights:
+- The number of employees increase significantly from 2010 to 2015, but then decrease significantly from 2016 to 2020.
+- From 2016 to 2020, the **company has lost 108 employees** in total, with the highest number of employees resigned in 2018.
+
+#### How many net employees changes over the years?
+The net employees changes over the years is shown in the following chart:
+
+![Net Emp](./src/images/net_emp.png)
+
+Insights:<br>
+As have said before, the company's employee number is increasing every year(total resign stil under net hires) from 2006 to 2015, untill 2016 to 2020 the total resign is more than the total hires. This indicates that the company has a problem with employee retention (High Reisgnation Rate).
+
+#### How many percentage of employees resigned in total?
+The percentage of employees resigned in total is shown in the following chart:
+
+![Total Resign Pct](./src/images/status_pct.png)
+
+Insight:<br>
+The total Resignation Rate is 31.0% (Mid Imbalanced), while the retention rate is 69.0%. This is a high Resignation rate, which means the company has a problem as said before. Because of this company needs to take action to reducte the resignation rate and increase retention rate, That's why I will develop a predictive model to predict employee resignations and provide actionable business recommendations to improve employee retention.
+
+### Resign Reason Analysis for Employee Attrition Management Strategy
+Before analyze the reason for employee resignations, let's see the percentage of employee resigns by Job Position/Title. 
+
+#### How many percentage of employees resigned by Job Position/Title?
+The percentage of employees resigned by Job Position/Title is shown in the following chart:
+
+![Pct Resign by Job Pos](./src/images/job_resign_pct.png)
+
+Insights:<br>
+The 'Data Analyst' position had the highest resignation rate at 100%. Other positions with resignation rates above 50% include 'Software Engineer (Front End)' at around 63%, 'Product Design (UI & UX)' at around 60%, and 'Product Manager' at around 54%. Positions with resignation rates below 50% include 'Data Engineer', 'Software Engineer (Android)', 'Software Engineer (Back End)', and the remaining job positions.
+
+#### What is Job Employee Resign Reasons by Job Position/Title?
+The Job Employee Resign Reasons by Job Position/Title is shown in the following chart:
+
+![Resign Reason by Job Pos](./src/images/sankey_reason.png)
+
+Insights:<br>
+- Data Analyst with the highest resignation rate 100% (from the previous plot), the resignation reason is mostly because of the toxic culture and internal conflict in the compny. This could indicate that employees are feeling unsatisfied with the work environment and the company culture and resolving internal conflicts to retain employees.
+- Job Position Software Engineer (Front End & Back End) has pattern that one of the reason their resigned is because they can't work remotely, this could indicate that employees are looking for flexibility in their work arrangements. management need to consider offering remote work or hybrid work options to retain employees.
+
+- From 5 Job Posisitons are resignes because of the jam kerja (work hours), This could indicate that employees are feeling overworked or unsatisfied with the work-life balance offered by the company. Management need to consider redistributing tasks, hiring additional support, or offering flexible work arrangements to improve work-life balance.
+
+- Reason Ganti karir (switch career) or like kejelasan karir (career clarity) is also a common em ployee's reason for resign in the company with 5 job positions is resigned because of this reason. This could indicate that employees are looking for new challenges or better career opportunities. Management need to consider offering career development opportunities, training programs, or promotions to retain employees. 
+
+Actionable Business Recommendations:
+Based on the reasons for employee resignations, the company can take the following actions to improve employee retention:
+- For toxic culture and internal conflict:<br>Implement team-building activities, conduct anonymus employee surveys, and offer conflict resoultion training for managers.
+- For remote work:<br>Consider offering remote work or hybrid work options.
+- For work hours:<br>Consider redistributing tasks, hiring additional support, or offering flexible work arrangements.
+- For career development:<br>Create clear career paths, offer mentorship programs, and provide opportunities for skil development through training or conferences.
+
+#### How is the Employee resignation by career level and performance?
+The Employee resignation by career level and performance is shown in the following chart:
+
+![Resign by Lever Performance](./src/images/sunburst_level_perf.png)
+
+Insights:<br>
+- There's a higher resignation rate among fresh graduates, often due to "ganti karir" (switch career) and lack of remote work options. This suggests a mismatch between expectations and reality or lack of early career support.
+
+- The company is losing good talent ("sangat Bagus", "Bagus", "Biasa") across all levels. This highlights a need to address reasons for resignation across the board.
+
+- "Jam kerja" (long work hours) and lack of remote work options are common reasons for resignation across levels, indicating a work-life balance issue and need for flexilble work arrangements.
+
+- "Ganti karir" (switch career) and "kejelasan karir" (career clarity) are common reasons are common reasons for resignation across levels, Additionaly, "toxic culture" and "leadership" issues contribute to resignations at all levels.
+
+Actionable Business Recommendations:<br>
+- Targeted Onboarding and Early Career Development:
+  - Implement a structured onboarding program for freshgraduates, including mentorship and career exploration opportunities.
+  - Offer clear career paths with defined milestones and training programs spesific to each career level.
+
+- Improved Work-Life and Flexibility:
+  - Analyze workloads and redistribute tasks to prevent burnout
+  - Consifer offering a remote work program or hybrid model to cater to employee preference.
+  - Implement flexible scheduling options, if possible.
+
+- Retention Strategies for High-Performing Employees:
+  - Conduct exit interviews with high-performing employees to understand their reasons for leaving.
+  - Offer competitive compensation packages and benefits to retain top talent.
+  - Provide opportunities for career growth and development, such as promotions or leadership training.
+
+- Addressing Culture and Leadership:
+  - Conduct anonymous employee surveys to identify areas for improvement in company culture and leadership effectiveness.
+  - Implement team-building activities and conflict resolution training.
+  - Offer leadership development programs to improve management skills and employee engagement.
 
 
-### Data Preprocessing
 
 
 ### Modelling and Evaluation
