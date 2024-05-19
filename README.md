@@ -223,7 +223,28 @@ Actionable Business Recommendations:<br>
   - Offer leadership development programs to improve management skills and employee engagement.
 
 
+## Machine Learning Modelling
+### Data Preprocessing for Machine Learning
+I use another copy of the original imported data for this stage. Before performing any preprocessing steps such as handling missing values, I split the data into training and testing sets. This ensures that the preprocessing is done independently for both sets, preventing data leakage and ensuring a fair evaluation of the machine learning model. The data preprocessing steps include:
 
+1. Feature Engineering, applying the FE functions defined in the Data Analysis Preprocessing stage and feature binning for some features so the data distribution is more balanced when train test split and also for more general feature value distribution.
+
+2. Train Test Split, splitting the data into training and testing sets. The training set is used to train the machine learning model (75% of the data), while the testing set is used to evaluate the model's performance (25% of the data).
+
+3. Handling Missing Values, Applying the missing value handling functions defined in the Data Analysis Preprocessing stage.
+
+4. Feature Selection and Feature Encoding, Selecting the features based on PPScore, and encoding the categorical features, for ordinal features I use Ordinal Encoding (Label Encoding) and for nominal features I use One-Hot Encoding. And drop the unnecessary features.
+
+5. Handling Outliers on data train with IQR method(Cap the outliers to Upper and Lowe Bound). 
+
+Before Handling Outliers:
+![Before Handling Outliers](./src/images/b4_handl_outliers.png)
+
+After Handling Outliers:
+![After Handling Outliers](./src/images/after_handl_outliers.png)
+
+6. Imbalance Data Handling, Handling the imbalance data on the training set using SMOTE Tomek method.
+![Handled Imbalanced](./src/images/smotetomekd.png)
 
 ### Modelling and Evaluation
 
