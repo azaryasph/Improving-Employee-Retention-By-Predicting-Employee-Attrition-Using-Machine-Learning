@@ -9,10 +9,10 @@
     <img src="https://img.shields.io/github/commit-activity/m/azaryasph/Improving-Employee-Retention-By-Predicting-Employee-Attrition-Using-Machine-Learning" alt="Commit Activity Badge">
     <img src="https://img.shields.io/github/repo-size/azaryasph/Improving-Employee-Retention-By-Predicting-Employee-Attrition-Using-Machine-Learning" alt="Repo Size Badge">
     <img src="https://img.shields.io/badge/contributions-welcome-orange.svg" alt="Contributions welcome">
-    <img src="https://www.codefactor.io/repository/github/azaryasph/Improving-Employee-Retention-By-Predicting-Employee-Attrition-Using-Machine-Learning" alt="CodeFactor" />
-</a>
+    <img src="https://www.codefactor.io/repository/github/azaryasph/improving-employee-retention-by-predicting-employee-attrition-using-machine-learning" alt="CodeFactor"/>
+  </a>
 </p>
-<!-- End Badges -->
+<!-- End Badges --> 
 
 <!-- Start Project Title -->
 # <img src="https://yt3.googleusercontent.com/ytc/AIdro_n0EO16H6Cu5os9ZOOP1_BsmeruHYlmlOcToYvI=s900-c-k-c0x00ffffff-no-rj" width="30"> Mini Project 5: Improving Employee Retention By Predicting Employee Attrition Using Machine Learning<img src="https://yt3.googleusercontent.com/ytc/AIdro_n0EO16H6Cu5os9ZOOP1_BsmeruHYlmlOcToYvI=s900-c-k-c0x00ffffff-no-rj" width="30">
