@@ -258,7 +258,7 @@ The models that will be used in this project are Tree-based models, such as:
 And I also use Logistic Regression because it's a simple model and can be used as a baseline model.
 
 #### Metrics Evaluation
-The evaluation metrics crucial for assessing the model are **ROC AUC** (Receiver Operating Characteristic Area Under the Curve) **Recall** and **Precision** due to the imbalanced nature of the data and Business Prespective.
+The evaluation metrics crucial for assessing the model are **ROC AUC** (Receiver Operating Characteristic Area Under the Curve) **Recall** and **Precision** due to the imbalanced nature of the data and Business Prespective. And also **Cross validation** with 10 folds are also performed to ensure the model's generalization performance.
 From the business perspective, the c*ompany aims to minimize the number of employees incorrectly predicted to stay* (False Negatives) when they actually intend to resign. This is because the **financial implications of hiring and training a new employee** (a consequence of a False Negative) **are greater than the costs associated with retaining an existing employee** (a consequence of a False Positive).
 While focusing on Recall, it's also important to maintain a good Precision score. Balancing these two metrics means we can lower the training cost while still lowering the retaining cost. 
 
@@ -367,3 +367,26 @@ Here's what the SHAP values tell us about about each factor's influence the XGBo
 - Engagement Scores: A lower employee engagement score predicts a higher chance of resignation. This highlights the importance of fostering a positive work environment and addressing employee concerns.
 - Performance: This one seems counterintuitive. The model predicts a higher chance of resignation for high performers, and from the previous data analysis, we know that high performers are more likely to resign. This could be due to high performers seeking new challenges or better opportunities elsewhere.
 
+### Conclusion
+In this Project I have analyze the company's employee data to understand the current condition of its employees and explore the problems within the company that cause employees to resign, and already given actionable business recommendations for HR Management to improve employee retention. I have also developed a predictive model to predict employee resignations to save more cost efficientcy. The best model is XGBoost with the AUC score of 0.938368, Recall of 0.875, and Precision of 0.84. The model can help the company to save $256,000 by predicting employee resignations and taking action to retain employees. The top 5 features that have the most impact on predicting employee resignations are `EmploymentTenure`, `HiringPlatform_Google_Search`, `HiringToEval`, `StatusKepegawaian_Outsource`, and `HiringPlatform_Diversity_Job_Fair / LinkedIn`. The SHAP values analysis provides insights into how each feature influences the model's predictions. The company can use the results of this project to make the right decisions to improve employee retention and save costs.
+
+### Installation and Usage
+1. Clone this repository
+```
+git clone
+```
+2. Install the required libraries
+```
+pip install -r requirements.txt
+```
+3. Run the Jupyter Notebook
+```
+jupyter notebook
+```
+4. Open the Jupyter Notebook file and run the code
+
+### Acknowledgements
+I would like to express my sincere gratitude to [Rakamin Academy](https://www.rakamin.com/) for providing the dataset used in this project. This dataset was instrumental in allowing me to complete this work. Additionally, I would like to thank Mr. [Fiqry Revadiansyah](https://www.linkedin.com/in/fiqryrevadiansyah/) for his invaluable guidance and support throughout the project.
+
+
+![Thank You GIF](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbTJlb2JmdTU4ejFlaHR4Njl5bXMwNnRvZWR1dTVqM3RnYWo3YnB2ZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fCU2sty6GAqcWzkOUc/giphy.gif)
