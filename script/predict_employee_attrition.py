@@ -293,7 +293,7 @@ display(data_eda1.head(3))
 # %%
 # Create aggregated tables for number of employees hired and resigned each year
 resign_agg = data_eda1.groupby('ResignYear')['EnterpriseID'].count().reset_index(name='TotalResign')
-hire_agg =  data_eda1.groupby('HiringYear')['EnterpriseID'].count().reset_index(name='TotalHires')
+hire_agg = data_eda1.groupby('HiringYear')['EnterpriseID'].count().reset_index(name='TotalHires')
 
 # Kpom the 2 aggregated tables with outer join because there's missing year in the data
 metrics_agg = pd.merge(resign_agg, hire_agg, left_on='ResignYear', right_on='HiringYear', how='outer')
