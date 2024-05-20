@@ -244,50 +244,126 @@ After Handling Outliers:
 ![After Handling Outliers](./src/images/after_handl_outliers.png)
 
 6. Imbalance Data Handling, Handling the imbalance data on the training set using SMOTE Tomek method.
-![Handled Imbalanced](./src/images/smotetomekd.png)
+
+    ![Handled Imbalanced](./src/images/smotetomekd.png)
 
 ### Modelling and Evaluation
-
-
-#### Model Selection
-
+#### Machine Learning model will be Train and Evaluated
+The models that will be used in this project are Tree-based models, such as:
+- Decision Tree
+- Random Forest
+- XGBoost
+- AdaBoost
+- Gradient Boosting
+And I also use Logistic Regression because it's a simple model and can be used as a baseline model.
 
 #### Metrics Evaluation
+The evaluation metrics crucial for assessing the model are **ROC AUC** (Receiver Operating Characteristic Area Under the Curve) **Recall** and **Precision** due to the imbalanced nature of the data and Business Prespective.
+From the business perspective, the c*ompany aims to minimize the number of employees incorrectly predicted to stay* (False Negatives) when they actually intend to resign. This is because the **financial implications of hiring and training a new employee** (a consequence of a False Negative) **are greater than the costs associated with retaining an existing employee** (a consequence of a False Positive).
+While focusing on Recall, it's also important to maintain a good Precision score. Balancing these two metrics means we can lower the training cost while still lowering the retaining cost. 
 
+#### Models Evaluation
+The models are evaluated based on the following metrics and the default threshold of 0.5: 
+| Model                     | AUC_train | AUC_test | CrossVal_AUC | Recall_train | Recall_test | Precision_train | Precision_test | F1_train | F1_test |
+|---------------------------|-----------|----------|--------------|--------------|-------------|-----------------|----------------|----------|---------|
+| LogisticRegression        | 0.962659  | 0.922743 | 0.922286     | 0.892617     | 0.625000    | 0.910959        | 0.833333       | 0.901695 | 0.714286|
+| DecisionTreeClassifier    | 1.000000  | 0.875000 | 0.857619     | 1.000000     | 0.833333    | 1.000000        | 0.833333       | 1.000000 | 0.833333|
+| RandomForestClassifier    | 1.000000  | 0.907118 | 0.950190     | 1.000000     | 0.541667    | 1.000000        | 0.866667       | 1.000000 | 0.666667|
+| AdaBoostClassifier        | 0.984775  | 0.827257 | 0.900476     | 0.919463     | 0.416667    | 0.925676        | 0.714286       | 0.922559 | 0.526316|
+| XGBClassifier             | 1.000000  | 0.917535 | 0.965587     | 1.000000     | 0.708333    | 1.000000        | 0.850000       | 1.000000 | 0.772727|
+| GradientBoostingClassifier| 1.000000  | 0.920139 | 0.963746     | 1.000000     | 0.666667    | 1.000000        | 0.888889       | 1.000000 | 0.761905|
 
-#### Model Evaluation
+ROC Curve for each model:
+![ROC Curve](./src/images/roc_curve.png)
+
+As we can see from the table results of the model and the ROC Curve to compare the model performance, the best model is **XGBClassifier**, even the AUC is the second highest on data test (Logistic Regression has the highest AUC score on data test), but the Recall and Precision are the highest among the other models on data test and Cross Validation. This XGBoost model will be hyperparameter tuned to get the best model performance.
+<br>
+After hyperparameter tuning with GridSearchCV and manual tuning, the model performance is improved(especially AUC). I also threshold tuning the proabability threshold to get the best model performance based on Recall and Precision.
+<br><br>
+
+XGBoost **Before hyperparameter tuning** with the **threshold of 0.22**:
+
+| Model        | AUC_train | AUC_test | CrossVal_AUC | Recall_train | Recall_test | Precision_train | Precision_test | F1_train | F1_test |
+|--------------|-----------|----------|--------------|--------------|-------------|-----------------|----------------|----------|---------|
+| XGBClassifier| 1.0       | 0.917535 | 0.965587     | 1.0          | 0.791667    | 0.993333        | 0.826087       | 0.996656 | 0.808511|
+
+<br>
+
+XGBoost **After hyperparameter tuning** with the **threshold of 0.22**:
+| Model        | AUC_train | AUC_test | CrossVal_AUC | Recall_train | Recall_test | Precision_train | Precision_test | F1_train | F1_test |
+|--------------|-----------|----------|--------------|--------------|-------------|-----------------|----------------|----------|---------|
+| XGBClassifier| 1.0       | 0.938368 | 0.970127     | 1.0          | 0.875       | 0.986755        | 0.84           | 0.993333 | 0.857143|
+
+<br>
+
+XGBoost ROC Curve After Hyperparameter Tuning:
+![ROC Curve After Hyperparameter Tuning](./src/images/roc_curve_after_tuning.png)
+
+XGBoost Confusion Matrix:
+![Confusion Matrix](./src/images/confusion_matrix.png)
+
+After hyperparameter tuning, the model performance is improved, as we can see the AUC, Recall, and Precision are increased. With this model we can try to simulate the business impact and make actionable business recommendations to improve employee retention.
 
 
 #### Model Business Impact Simulation
+##### Cost Saving Analysis by Threshold
+On this stage, I will try to simulate the Business impact simulation based on the model prediction probability threshold from 0 to 1 with so we can get the best model threshold with the lowest cost. The business impact simulation will be based on the following metrics:
+- **Recall**
+- **Precision**
+
+ In assumption of the costs:
+
+- Recruitment Cost = 5000
+- Training Cost = 2500
+- Retention Cost = 2000
+
+![Cost Saving Analysis](./src/images/cost_threshold.png)
+
+``` 
+Cost on Default Threshold: $104,500
+Cost on Optimal Threshold: $86,000
+
+Cost Difference/Saved between Normal and Optimal Threshold: $18,500
+``` 
+Based on the cost saving analysis by threshold, the best threshold is 0.25 with the lowest total cost of $86,000.
 
 
-#### Model Business Recommendations based on Feature Importances
+#### Cost with and without using the model
+In assumption 50% of the dataset employee is resign, Cost before and after using the model is shown in the following table:
+|Cost Before Using Model|Cost After Using Model|Cost Saving|
+|------------------------|----------------------|-----------|
+|$342,000              |$86,000            |$256,000   |
 
+Based on the cost saving analysis, the company can save 256,000 by using the model to predict employee resignations and take action to retain employees.
 
-**Actionable Business Recommendations**
+#### XGBoost Model Feature Importances
+XGBoost Feature Importances:
 
+![Feature Importances](./src/images/xgb_feat_imp.png)
 
+From the XGBClassifier feature importances, the top 5 features that have the most impact on predicting employee resignations are:
+1. `EmploymentTenure`<br> This feature likely represents the length of time an employee has been with the company. It's a significant feature because employees who have been with the company longer may be less likely to resign, as they have more invested in the company.
+2. `HiringPlatform_Google_Search`<br> This feature probably indicates whether the employee was hired through a Google search. It could be that employees who found the job through this method are more or less likely to resign, depending on various factors such as how well the job matched their search criteria.
 
-### Conclusion
+3. `HiringToEval`<br> This feature could represent the time from hiring to evaluation. It might be significant because it could reflect how quickly an employee is assessed and given feedback, which could impact their job satisfaction and likelihood to resign.
 
+4. `StatusKepegawaian_Outsource`<br> This feature likely indicates whether the employee is outsourced. Outsourced employees might have different job satisfaction levels or job security, which could affect their likelihood to resign.
 
-### Installation and Usage
-1. Clone this repository
-```
-git clone
-```
-2. Install the required libraries
-```
-pip install -r requirements.txt
-```
-3. Run the Jupyter Notebook
-```
-jupyter notebook
-```
-4. Open the Jupyter Notebook file and run the code
+5. `HiringPlatform_Diversity_Job_Fair / LinkedIn` <br> This feature probably indicates whether the employee was hired through a diversity job fair or LinkedIn. The hiring platform could impact the employee's expectations of the job and the company, which could affect their job satisfaction and likelihood to resign.
+<br><br>
 
-### Acknowledgements
-<!-- Thanks to [Rakamin Academy](https://www.rakamin.com/) for providing the dataset and the opportunity to work on this project. I would also like to thank Mr. [Fiqry Revadiansyah](https://www.linkedin.com/in/fiqryrevadiansyah/) for his guidance and support throughout the project.
+XGBoost Model SHAP Values:
 
+![XGB SHAP Values](./src/images/xgb_shap.png)
 
-![Thank You GIF](https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExa3BiNGlqejgxaGh0cjc3ODVzNTNtb3RhZmE5MTRyYzBvd3k2ZjQ0aCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/l3q2FnW3yZRJVZH2g/giphy.gif) -->
+Here's what the SHAP values tell us about about each factor's influence the XGBoost model prediction:
+- Tenure: Employees with shorter tenures are more likely to resign, according to the model. This suggests that building tenure might increase employee retention.
+- Age: The model predicts a higher chance of resignation for younger employees. This could be due to various factors like career exploration or lack of attachment to the company.
+- Time to Evaluation: A longer period between hiring and evaluation increase the predicted chance of resignation. This might indicate a need to streamline the evaluation process and provide earlier feedback.
+- Hiring Platform: Employees hired through Indeed and LinkedIn are predicted to have a lower chance of resigning. This suggests these platforms might attract candidates with a stronger fit for the company.
+- Absences: Interestingly, the model predicts a higher chance of resignation for employees with less absence. This could be because highly engaged employees who rarely miss work might be more likely to seek nwew opportunities if they feel unfulfilled.
+
+- Project Involvement: Employees who have worked on projects are predicted to have a lower chance of resigning. This suggests that project involvement might invrease employee engagement and satisfaction.
+- Engagement Scores: A lower employee engagement score predicts a higher chance of resignation. This highlights the importance of fostering a positive work environment and addressing employee concerns.
+- Performance: This one seems counterintuitive. The model predicts a higher chance of resignation for high performers, and from the previous data analysis, we know that high performers are more likely to resign. This could be due to high performers seeking new challenges or better opportunities elsewhere.
+
